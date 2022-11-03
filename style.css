@@ -69,15 +69,33 @@ overflow-x: hidden;
   width: fixed;
   padding: 10px 15%;
   background:rgb(144, 173, 243);
-  color:rgb(82, 89, 104);
+  color:rgb(219, 218, 218);
   display: flex;
 }
 .footer div {
   text-align: center;
 
 }
-
+.col-1 a{
+display: block;
+text-decoration: none;
+color:rgb(82, 89, 104);
+margin-bottom: 10px;
+}
 .col-2 {
 flex-grow: 2;
 
+}
+
+.col-3 {
+  width: 200px;
+  height: 45px;
+  border-radius: 4px;
+  text-align: center;
+ margin-top: 20px;
+ margin-bottom: 40px;
+ outline:#555;
+}
+.col-3 p {
+  color:#555;
 }
