@@ -1,7 +1,7 @@
 body {
     margin: 0;
-    background-image: url('https://wallpapercave.com/wp/wp8448705.jpg');
-overflow-x: hidden;
+    background-image: url('https://coolbackgrounds.io/images/backgrounds/index/aqua-d9b59c89.png');
+    overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
   }
   
@@ -12,7 +12,7 @@ overflow-x: hidden;
   }
   
   .header {
-    background-color: rgba(130, 138, 253, 0.5);
+    background-color: rgba(175, 180, 248, 0.5);
     padding: 10px 16px;
     background: rgb(103, 112, 243);
     color: #f1f1f1;
@@ -25,7 +25,7 @@ overflow-x: hidden;
   }
   
   .sticky {
-    background-color: rgba(130, 138, 253, 0.5);
+    background-color: rgba(175, 180, 248, 0.5);
     position: fixed;
     top: 0;
     width: 100%;
@@ -36,7 +36,7 @@ overflow-x: hidden;
   }
 .floating_thing {
     padding: 10px 15px;
-    background-color: rgba(154, 111, 255, 0.5);
+    background-color: rgba(175, 180, 248, 0.5);
     position: fixed;  
     top: 200px;
     z-index: +260;
@@ -47,14 +47,14 @@ overflow-x: hidden;
     margin: auto;
     width:80%;
     z-index: +150;
-    color:rgb(144, 173, 243);
+    color:rgb(202, 202, 202);
 
 }
 .htext 
 {
 
     border-radius: 4px;
-    background-color: rgba(106, 127, 243, 0.5);
+    background-color: rgb(95, 93, 93);
     padding: 50px 5%;
     width: 5%;
     position: relative;
@@ -66,7 +66,7 @@ overflow-x: hidden;
     padding: 20px;
 }
 .footer {
-  background-color: rgba(154, 111, 255, 0.5);
+  background-color: rgba(175, 180, 248, 1);
   margin-top: 150px;
   width: fixed;
   padding: 10px 15%;
