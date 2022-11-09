@@ -36,7 +36,7 @@ body {
   }
 .floating_thing {
     padding: 10px 15px;
-    background-color: rgba(175, 180, 248, 0.5);
+    background-color: rgba(175, 180, 248, 0.7);
     position: fixed;  
     top: 200px;
     z-index: +260;
@@ -96,9 +96,9 @@ flex-grow: 2;
   text-align: center;
  margin-top: 20px;
  margin-bottom: 40px;
- color:rgb(134, 133, 133);
+ color:rgb(206, 206, 206);
 }
 .col-3 p {
-  color:rgb(134, 133, 133);
+  color:rgb(126, 126, 126);
   display: block;
 }

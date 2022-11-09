@@ -6,7 +6,7 @@ const button = document.getElementById("btn");
 button.addEventListener("click", ()=>{
   var search_input = document.getElementById("search_input").value;
   if (!search_input == "") {
-  //TODO
+  alert(search_input);
   }
   else
   alert("Empty field.");
