@@ -1,43 +1,49 @@
-const http = require('http')
-const fs = require('fs')
-const axio = require('axios')
-const cheerio = require('cheerio')
-const express = require('express')
-const port = 8000
-const app = express()
-const url = 'https://google.com'
-const server = http.createServer(function(req,res){
-    res.writeHead(200, {'content-type': 'text/html'})
-    fs.readFile('index.html', function(error,data){
-      if (error) {
-        res.writeHead(404)
-        res.writable("Error: " + error)
-      } else {
-        res.writable(data)
-      }
-      res.end()
-    })
-})
-server.listen(port, function(error){
-    if (error) {
-      console.log('something went wrong:' + error)
-    } else {
-      console.log('Server is listening on port ' + port)
-    }
-})
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const port = process.env.PORT || 3000;
 
-axio(url)
-    .then(response => {
-      const html = response.data
-      const $ = cheerio.load(html)
-      const articles = []
-      $('.vcVZ7d', html).each(function(){
-          const title =   $(this).text()
-          const url   =   $(this).find('a').attr('href')
-          articles.push({
-            title,
-            url
-          })
-      })
-      console.log(articles)
-    }).catch(err => console.log(err))
+const server = http.createServer((req, res) => {
+    let filePath = path.join(
+        __dirname,
+        "public",
+        req.url === "/" ? "index.html" : req.url
+    );
+
+    let extName = path.extname(filePath);
+    let contentType = 'text/html';
+
+    switch (extName) {
+        case '.css':
+            contentType = 'text/css';
+            break;
+        case '.js':
+            contentType = 'text/javascript';
+            break;
+        case '.json':
+            contentType = 'application/json';
+            break;
+        case '.png':
+            contentType = 'image/png';
+            break;
+        case '.jpg':
+            contentType = 'image/jpg';
+            break;
+    }
+
+    console.log(`File path: ${filePath}`);
+    console.log(`Content-Type: ${contentType}`)
+
+    res.writeHead(200, {'Content-Type': contentType});
+
+    const readStream = fs.createReadStream(filePath);
+    readStream.pipe(res);
+});
+
+server.listen(port, (err) => {
+    if (err) {
+        console.log(`Error: ${err}`)
+    } else {
+        console.log(`Server listening at port ${port}...`);
+    }
+});
