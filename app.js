@@ -1,7 +1,34 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
+const cheerio  = require('cheerio');
+const express = require('express');
+
+const app = express();
+
 const port = process.env.PORT || 3000;
+
+const url = 'https://www.theguardian.com/uk'; //todo joblist for search_input -> (internal javascript code)
+
+axios(url)
+    .then(response => {
+        const htmldata = response.data;
+        //console.log(htmldata);
+        const $ = cheerio.load(htmldata);
+        const html = []
+        $(".fc-item__title", htmldata).each(function() { 
+          const text =   $(this).text() // filters the data by returning only the text content
+          const link_href = $(this).find('a').attr('href'); // returns everything inside of the element "href" attribute
+            html.push({
+                text,
+                link_href
+            })
+        })
+        console.log(html);
+    })
+
+var search_input;
 
 const server = http.createServer((req, res) => {
     let filePath = path.join(
@@ -39,11 +66,12 @@ const server = http.createServer((req, res) => {
     const readStream = fs.createReadStream(filePath);
     readStream.pipe(res);
 });
-
+var date = new Date();
 server.listen(port, (err) => {
     if (err) {
-        console.log(`Error: ${err}`)
+        console.log(`Error: ${err}`);
     } else {
+        console.log(`No errors found. \n${date}`);
         console.log(`Server listening at port ${port}...`);
     }
 });
