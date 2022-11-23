@@ -4,13 +4,9 @@ const path = require('path');
 const axios = require('axios');
 const cheerio  = require('cheerio');
 const express = require('express');
-
 const app = express();
-
 const port = process.env.PORT || 3000;
-
 const url = 'https://www.theguardian.com/uk'; //todo joblist for search_input -> (internal javascript code)
-
 axios(url)
     .then(response => {
         const htmldata = response.data;
@@ -25,10 +21,20 @@ axios(url)
                 link_href
             })
         })
-        console.log(html);
-    })
+        if (html.length > 0) {
+            console.log('successfully scraped "', url, '" with', html.length, "rows");
+            var startTime = performance.now()
+            fs.writeFile('scrape_data.txt', htmldata,  err => {
+                if (err) {console.log(`error: ${err}`);}
+                });
+                const filePath = path.join(process.cwd(), 'scrape_data.txt');
+                var endTime = performance.now()
+                console.log('local save at: "', filePath, '" took',(endTime - startTime), "milliseconds");
+            
+        }
+        //console.log(html);
+    }).catch(error => console.log(error));
 
-var search_input;
 
 const server = http.createServer((req, res) => {
     let filePath = path.join(
@@ -71,7 +77,9 @@ server.listen(port, (err) => {
     if (err) {
         console.log(`Error: ${err}`);
     } else {
-        console.log(`No errors found. \n${date}`);
+        console.log(`No errors found. :) \n${date}`);
         console.log(`Server listening at port ${port}...`);
     }
 });
+
+
