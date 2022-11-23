@@ -29,6 +29,6 @@
        
 - do this for the rest of the packages:
    - ``npm i cheerio``
-
+   - ``npm i axios``
      
       
